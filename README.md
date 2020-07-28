@@ -44,20 +44,28 @@ $ python3 dumd-mixer.py -p Win7SP1x86 -o kernel32.mix -d tmp kernel32 ~/temp/
 [>] Ready to parse dumps in "/home/ricardo/temp/" to extract kernel32 module
 [*] Starting extraction phase ... done!
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/csrss.exe-372-kernel32.dll-PE-76a80000.dmp": 0
+INFO:main:[*] Number of memory pages to process: 20
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/csrss.exe-372-kernel32.dll-PE-76a80000.dmp": 20
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/Explorer.EXE-328-kernel32.dll-PE-76a80000.dmp": 20
+INFO:main:[*] Number of memory pages to process: 62
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/Explorer.EXE-328-kernel32.dll-PE-76a80000.dmp": 62
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/wmpnetwk.exe-1768-kernel32.dll-PE-76a80000.dmp": 62
+INFO:main:[*] Number of memory pages to process: 47
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/wmpnetwk.exe-1768-kernel32.dll-PE-76a80000.dmp": 64
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/svchost.exe-3432-kernel32.dll-PE-76a80000.dmp": 64
+INFO:main:[*] Number of memory pages to process: 36
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/svchost.exe-3432-kernel32.dll-PE-76a80000.dmp": 66
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/notepad++.exe-1964-kernel32.dll-PE-76a80000.dmp": 66
+INFO:main:[*] Number of memory pages to process: 57
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/notepad++.exe-1964-kernel32.dll-PE-76a80000.dmp": 69
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/cmd.exe-2100-kernel32.dll-PE-76a80000.dmp": 69
+INFO:main:[*] Number of memory pages to process: 65
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/cmd.exe-2100-kernel32.dll-PE-76a80000.dmp": 81
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/conhost.exe-568-kernel32.dll-PE-76a80000.dmp": 81
+INFO:main:[*] Number of memory pages to process: 46
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/conhost.exe-568-kernel32.dll-PE-76a80000.dmp": 81
 INFO:main:[*] Total nodes before processing "/home/ricardo/dumd-mixer/tmp/test.exe-2976-kernel32.dll-PE-76a80000.dmp": 81
+INFO:main:[*] Number of memory pages to process: 28
 INFO:main:[*] Total nodes after processing "/home/ricardo/dumd-mixer/tmp/test.exe-2976-kernel32.dll-PE-76a80000.dmp": 81
 [*] Starting mixing phase ... done!
 [*] Starting generation of mixed module phase ... done!
