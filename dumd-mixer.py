@@ -174,6 +174,7 @@ def mix_dumps_results(files) -> (AVLTree, int):
 
             list_pages = data[1].split(',')
             logger.info('[*] Total nodes before processing "{0}": {1}'.format(filename, mix_tree.get_count()))
+            logger.info('[*] Number of memory pages to process: {0}'.format(len(list_pages)))
             for n_page in list_pages:
                 logger.debug("[+] Inserting {0} in the tree (file {1})".format(n_page, f))
                 mix_tree.insert(int(n_page), filename)
@@ -190,9 +191,7 @@ def read_and_write_page(fo, filename, n_page):
     # open the input file and set the pointer to the given page
     logger.debug('[+] Opening file {0} to read page {1}'.format(filename, n_page))
     fi = open(filename, "rb")
-    if n_page == 0:
-        n_page = 1
-    fi.seek((n_page - 1)*PAGE_SIZE)
+    fi.seek(n_page*PAGE_SIZE) # remember: initial page is 0
     # once the pinter is set, read bytes and write them to output file
     _bytes = fi.read(PAGE_SIZE)
     fo.write(_bytes)
@@ -205,6 +204,7 @@ def generate_mixed_module(dump_folder, tree: AVLTree, out_name, t_pages: int):
     Create a mixed module, considering the info stored in the given AVL tree
     '''
     in_order = tree.in_order(False)
+    logging.debug(f'[+] Content of the AVL tree (in-order): {in_order}')
     in_order_list = in_order.split(';')[:-1]
     # create output file
     outfile = os.path.join(output_folder, out_name)
