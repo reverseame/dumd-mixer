@@ -1,9 +1,22 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+'''Defines an AVL tree structure and its common operations
+'''
 
 import random
 from avlnode import AVLNode
 
 import logging
+
+__author__ = "Ricardo J. Rodríguez"
+__copyright__ = "Copyright 2020, University of Zaragoza, Spain"
+__credits__ = ["Ricardo J. Rodríguez"]
+__license__ = "GPL"
+__version__ = "1.0"
+__maintainer__ = "Ricardo J. Rodríguez"
+__email__ = "rjrodriguez@unizar.es"
+__status__ = "Production"
+
 
 def debug(msg):
     logging.debug(msg)

@@ -1,4 +1,18 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+'''Auxiliary class to define the node of an AVL tree
+
+A node is composed of a key and a value (optionally None). This abstraction enables you to use the AVL as a structure to store elements with an associated key.
+'''
+
+__author__ = "Ricardo J. Rodríguez"
+__copyright__ = "Copyright 2020, University of Zaragoza, Spain"
+__credits__ = ["Ricardo J. Rodríguez"]
+__license__ = "GPL"
+__version__ = "1.0"
+__maintainer__ = "Ricardo J. Rodríguez"
+__email__ = "rjrodriguez@unizar.es"
+__status__ = "Production"
 
 class AVLNode:
     def __init__(self, key, value=None):

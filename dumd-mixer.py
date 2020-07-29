@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+'''Creates a single module file combining the same module extracted from a set of memory dumps
+'''
 
 import os
 import sys
@@ -11,6 +14,15 @@ import glob
 import subprocess
 
 from avl import AVLTree
+
+__author__ = "Ricardo J. Rodríguez"
+__copyright__ = "Copyright 2020, University of Zaragoza, Spain"
+__credits__ = ["Ricardo J. Rodríguez", "Miguel Martín-Pérez"]
+__license__ = "GPL"
+__version__ = "1.0"
+__maintainer__ = "Ricardo J. Rodríguez"
+__email__ = "rjrodriguez@unizar.es"
+__status__ = "Production"
 
 default_log_level = logging.INFO
 logger = logging.getLogger('main')
