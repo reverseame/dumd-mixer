@@ -108,9 +108,9 @@ def load_cfg_file(config_file='config.ini'):
 
     config = configparser.ConfigParser()
     config.read(config_file)
-    VOL_BIN = output_name = config['DEFAULT']['VOL_BIN']
-    SUM_PLUGIN_DIR = output_name = config['DEFAULT']['SUM_PLUGIN_DIR']
-    PYTHON2_BIN = config['DEFAULT']['PYTHON2_BIN']
+    VOL_BIN = os.path.expanduser(os.path.normpath(config['DEFAULT']['VOL_BIN']))
+    SUM_PLUGIN_DIR = os.path.expanduser(os.path.normpath(config['DEFAULT']['SUM_PLUGIN_DIR']))
+    PYTHON2_BIN = os.path.normpath(config['DEFAULT']['PYTHON2_BIN'])
 
 def extract_module_from_dumps(dumps_folder, mod_name, out_folder, profile):
     '''
