@@ -1,6 +1,6 @@
 # Dump Module Mixer 
 
-`dumd-mixer` is a Python script to generate a given module from the same module extracted from a collection of memory dumps. Its workflow comprises three steps:
+`dumd-mixer` is a Python3 script to generate a given Windows module from the same module extracted from a collection of memory dumps. Its workflow comprises three steps:
 
 * Extraction of the given module (either an executable or a system library) from a set of memory dumps. Of course, the memory dumps must be taken from the same machine! Otherwise, the behavior of the tool is unreliable.
 * Mixing of the extracted modules. Using information provided by the previous step, the extracted modules are iterated checking which memory pages were found. Every memory page is inserted in a tree-like structure (in particular, an AVL tree), guaranteeing no repetitions of memory pages. 
@@ -10,11 +10,12 @@ It relies on the Volatility memory framework and its plugin [`similarity-unreloc
 
 ## Requirements
 
-- Python 2.7
+- Python 3.5 (tested on Python 3.8.4rc1 on top of Debian GNU/Linux bullseye/sid 8.11)
+- Python 2.7 (needed for Volatility)
 - [`volatility`](https://github.com/volatilityfoundation/volatility)
 - [`similarity-unrelocated-module`](https://github.com/reverseame/similarity-unrelocated-module)
 
-Use the [`config.ini`](config.ini) to specify the path to these binaries.
+Use the [`config.ini`](config.ini) to specify the path to these binaries. You can use either absolute or relative paths.
 
 ## Usage
 
