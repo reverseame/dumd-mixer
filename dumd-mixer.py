@@ -161,6 +161,7 @@ def mix_dumps_results(files) -> (AVLTree, int):
     Create an AVL tree that represents the mix of the dumps
     '''
     mix_tree = AVLTree()
+    sort_tree = AVLTree()
     total_pages = -1
     md5_first_page = -1
     # iterate on files
@@ -185,13 +186,24 @@ def mix_dumps_results(files) -> (AVLTree, int):
                 logger.warning(f'Total number of memory pages mismatch in "{filename}" ({current_total} found, it should be {total_pages})')
 
             list_pages = data[1].split(',')
-            logger.info('[*] Total nodes before processing "{0}": {1}'.format(filename, mix_tree.get_count()))
-            logger.info('[*] Number of memory pages to process: {0}'.format(len(list_pages)))
-            for n_page in list_pages:
-                logger.debug("[+] Inserting {0} in the tree (file {1})".format(n_page, f))
-                mix_tree.insert(int(n_page), filename)
-            logger.info('[*] Total nodes after processing "{0}": {1}'.format(filename, mix_tree.get_count()))
-
+            # store in an auxiliary structure to sort by len(list_pages)
+            sort_tree.insert(len(list_pages), (filename, list_pages))
+ 
+    # then insert in the mix tree in reversed order
+    in_order = sort_tree.in_order(False)
+    in_order = in_order.split(';')[:-1]
+    for itm in reversed(in_order):
+        # extract the filename and list_page of every node
+        itm = itm.split('[')
+        filename = itm[1][2:-3]
+        list_pages = itm[2][:-3].replace('\'', '').replace(' ', '').split(',')
+        #import pdb; pdb.set_trace()
+        logger.info('[*] Total nodes before processing "{0}": {1}'.format(filename, mix_tree.get_count()))
+        logger.info('[*] Number of memory pages to process: {0}'.format(len(list_pages)))
+        for n_page in list_pages:
+            logger.debug("[+] Inserting {0} in the tree (file {1})".format(n_page, f))
+            mix_tree.insert(int(n_page), filename)
+        logger.info('[*] Total nodes after processing "{0}": {1}'.format(filename, mix_tree.get_count()))
     return mix_tree, total_pages
 
 def fill_with_zeros(f, init, end):

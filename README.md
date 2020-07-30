@@ -3,7 +3,7 @@
 `dumd-mixer` is a Python3 script to generate a given Windows module from the same module extracted from a collection of memory dumps. Its workflow comprises three steps:
 
 * Extraction of the given module (either an executable or a system library) from a set of memory dumps. Of course, the memory dumps must be taken from the same machine! Otherwise, the behavior of the tool is unreliable.
-* Mixing of the extracted modules. Using information provided by the previous step, the extracted modules are iterated checking which memory pages were found. Every memory page is inserted in a tree-like structure (in particular, an AVL tree), guaranteeing no repetitions of memory pages. 
+* Mixing of the extracted modules. Using information provided by the previous step, the extracted modules are iterated checking which memory pages were found. Every memory page is inserted in a tree-like structure (in particular, an AVL tree), guaranteeing no repetitions of memory pages. The process of insertion follows a decreasing order, starting with the module in which more memory pages were retrieved.
 * Generation of the mixed file. Walking through the tree-like structure, a new file is created considering the memory pages from the corresponding extracted module indicated by each node in the tree.
 
 It relies on the Volatility memory framework and its plugin [`similarity-unrelocated-module`](https://github.com/reverseame/similarity-unrelocated-module) (`sum`). Invoking the plugin `sum` with the appropriate parameters, a log file is obtained that describes the memory pages of a given process or system library which are present in memory. The collection of logs is mixed using an AVL tree structure to optimize the insertion and in-order operations.
