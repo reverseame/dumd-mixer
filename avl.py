@@ -170,14 +170,14 @@ class AVLTree():
 
     def post_order(self, print_to_stdout=True):
         '''
-        Display the current tree in post-order, using recursion
-        As optional, it accepts a boolean to return the content. Otherwise, prints it
+        Traverse the current tree in post-order, using recursion. Return a string containing it
+        As optional, it accepts a boolean to print the content to stdout.
         '''
         _str = self._post_order(self.root)
         if print_to_stdout:
             print(_str)
-        else:
-            return _str
+        
+        return _str
     
     def _pre_order(self, node: AVLNode):
         _str = ""
@@ -189,14 +189,14 @@ class AVLTree():
 
     def pre_order(self, print_to_stdout=True):
         '''
-        Display the current tree in pre-order, using recursion
-        As optional, it accepts a boolean to return the content. Otherwise, prints it
+        Traverse the current tree in pre-order, using recursion. Return a string containing it
+        As optional, it accepts a boolean to print the content to stdout.
         '''
         _str = self._pre_order(self.root)
         if print_to_stdout:
             print(_str)
-        else:
-            return _str
+        
+        return _str
 
     def _in_order(self, node: AVLNode):
         _str = ""
@@ -208,14 +208,14 @@ class AVLTree():
 
     def in_order(self, print_to_stdout=True):
         '''
-        Display the current tree in order, using recursion
-        As optional, it accepts a boolean to return the content. Otherwise, prints it
+        Traverse the current tree in order, using recursion. Return a string containing it
+        As optional, it accepts a boolean to print the content to stdout.
         '''
         _str = self._in_order(self.root)
         if print_to_stdout:
             print(_str)
-        else:
-            return _str
+        
+        return _str
 
     def _find_max(self, root: AVLNode) -> AVLNode:
         if root.right is None:
