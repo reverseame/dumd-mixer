@@ -14,6 +14,7 @@ It relies on the Volatility memory framework and its plugin [`similarity-unreloc
 - Python 2.7 (needed for Volatility)
 - [`volatility`](https://github.com/volatilityfoundation/volatility)
 - [`similarity-unrelocated-module`](https://github.com/reverseame/similarity-unrelocated-module)
+- [`avl-tree`](https://github.com/ricardojrdez/avl-tree)
 
 Use the [`config.ini`](config.ini) to specify the path to these binaries. You can use either absolute or relative paths.
 
