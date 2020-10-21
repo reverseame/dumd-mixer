@@ -198,7 +198,7 @@ def get_inorder_pagelist_AVL(files) -> (list, int, str):
 
     # iterate on files
     for f in files:
-        logger.info(f"[+] Processing dump log file \"{f}\" ... ")
+        logger.info(f'[+] Processing dump log file "{f}" ...')
         lines = read_data(f)
         current_file_version = ''
         base_address = ''
@@ -322,40 +322,6 @@ def process_new_item(data, mix_tree):
     _nodes_after = mix_tree.get_count()
     logger.info('[*] Total nodes after processing "{0}": {1}'.format(filename, _nodes_after))
 
-def mix_dumps_results_AVL(files) -> (AVLTree, int):
-    '''
-    Create an AVL tree that represents the mix of the dumps
-    '''
-    mix_tree = AVLTree()
-
-    _reversed_pages, _totalpages, _modulename = get_inorder_pagelist_AVL(files)
-    # iterate on the list of memory pages in reversed order and get results of new nodes added in each step
-    for itm in _reversed_pages:
-        first_occurrence = itm.find('[') + 1
-        itm = ast.literal_eval(itm[first_occurrence:-1])
-                
-        if type(itm) is tuple:
-            process_new_item(itm, mix_tree)
-        elif type(itm) is list:
-            for aux in itm:
-                process_new_item(aux, mix_tree)
-    return mix_tree, _totalpages
-
-def mix_dumps_results_retAVL(files) -> (AVLTree, int):
-    '''
-    Create an AVL tree that represents the mix of the dumps
-    '''
-    mix_tree = AVLTree()
-
-    _mpages, _totalpages, _modulename = get_inorder_pagelist(files)
-    # iterate on the list of memory pages in reversed order and get results of new nodes added in each step
-    _nodes_after = 0
-    for key in reversed(sorted(_mpages)):
-        for f in _mpages[key]:
-            process_new_item(f, mix_tree)
-
-    return mix_tree, _totalpages
-
 def mix_dumps_results(files) -> (dict, int):
     '''
     Create a dictionary that represents the mix of the dumps
@@ -387,7 +353,6 @@ def mix_dumps_results(files) -> (dict, int):
     
     return mix_dict, _totalpages
 
-
 def fill_with_zeros(f, init, end):
     for zf in range(init, end):
         for i in range(1, PAGE_SIZE + 1):
@@ -404,43 +369,6 @@ def read_and_write_page(fo, filename, n_page):
     logger.debug('[+] Read {0} bytes from file {1}, written to output file ...'.format(len(_bytes), filename))
     # close input file
     fi.close()
-
-def generate_mixed_module_AVL(dump_folder, tree: AVLTree, out_name, t_pages: int):
-    '''
-    Create a mixed module, considering the info stored in the given AVL tree
-    '''
-    # create output file
-    outfile = os.path.join(output_folder, out_name)
-    fo = open(outfile, "wb")
-    
-    in_order = tree.in_order(False)
-    logging.debug(f'[+] Content of the dict (in-order): {in_order}')
-    in_order_list = in_order.split(';')[:-1]
-
-    # iterate on the items, reading each file and writing the content to fo
-    last_page = -1 # initial page is 0 
-    for item in in_order_list:
-        data = item.split('[')
-        n_page = int(data[0])
-        filename = data[1][:-1] # remove the ] at the end of the filename
-        # fill missing pages with zeros, if needed
-        if n_page - last_page != 1:
-            logger.debug('[+] Filling with zeros from {0} to {1}'.format(last_page, n_page))
-            fill_with_zeros(fo, last_page, n_page - 1)
-        # now read a page from filename and write it to fo
-        read_and_write_page(fo, filename, n_page)
-        # update last_page appropriately for next iteration
-        last_page = n_page
-
-    # fill last pages, if needed
-    if t_pages - last_page != 1:
-        logger.debug('[+] Filling with zeros from {0} to {1}'.format(last_page, t_pages))
-        fill_with_zeros(fo, last_page, t_pages - 1)
-
-    logger.debug('[+] Closing mixed file {0}'.format(out_name))
-    # close output file
-    fo.close()
-    return
 
 def generate_mixed_module(dump_folder, _dict: dict, out_name, t_pages: int):
     '''
